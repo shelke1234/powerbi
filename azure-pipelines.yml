@@ -5,7 +5,7 @@ trigger:
 
 variables:
   - name: powerbi_file
-    value: 'powerbi_demo1.pbix'
+    value: '**.pbix'
 
 stages:
 - stage: Build
