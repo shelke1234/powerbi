@@ -31,17 +31,10 @@ stages:
         # Authenticate with Power BI using python script
         echo "Authenticating with Power BI using python script..."
         python powerbi1.py
-
-        # Import the report
-        echo "Importing report..."
-        pbi import -f $(powerbi_file) -n "My-Space"
-
-        # Publish the report
-        echo "Publishing report..."
-        pbi publish -n "My-Space"
-
-        # Sign out of Power BI
-        echo "Signing out of Power BI..."
-        pbi logout
-      displayName: 'Deploy Report'
+- task: AzurePowerBIDeployment@1
+  inputs:
+    connectionName: 'powerbi'
+    datasetName: 'powerbi'
+    pbiFile: '$(pbiFile)'
+    workspaceId: '$(workspaceId)'
 
