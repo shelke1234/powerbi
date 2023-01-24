@@ -31,10 +31,4 @@ stages:
         # Authenticate with Power BI using python script
         echo "Authenticating with Power BI using python script..."
         python powerbi1.py
-  - task: AzurePowerBIDeployment@1
-        inputs:
-        connectionName: 'powerbi'
-        datasetName: 'powerbi'
-        pbiFile: '$(pbiFile)'
-        workspaceId: '$(workspaceId)'
 
