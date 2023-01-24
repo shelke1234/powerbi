@@ -34,11 +34,11 @@ stages:
 
         # Import the report
         echo "Importing report..."
-        pbi import -f $(powerbi_file) -n "My Report"
+        pbi import -f $(powerbi_file) -n "My-Space"
 
         # Publish the report
         echo "Publishing report..."
-        pbi publish -n "My Report"
+        pbi publish -n "My-Space"
 
         # Sign out of Power BI
         echo "Signing out of Power BI..."
