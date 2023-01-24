@@ -4,8 +4,8 @@ trigger:
 - Master
 
 variables:
-  - name: powerbi_file
-    value: '**.pbix'
+  pbiFile: '**.pbix'
+  workspaceId: '48a697cb-60f6-4efc-b80c-c1f0eedf3cb1'
 
 stages:
 - stage: Build
