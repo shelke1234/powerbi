@@ -1,19 +1,45 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+name: Power BI Deployment
 
 trigger:
 - Master
 
-pool:
-  vmImage: ubuntu-latest
+variables:
+  - name: powerbi_file
+    value: './powerbi_demo1.pbix'
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+stages:
+- stage: Build
+  jobs:
+  - job: Build
+    steps:
+    - script: |
+        # Perform any necessary build steps here, such as compiling source code
+        echo "Building report..."
+      displayName: 'Build Report'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- stage: Deploy
+  jobs:
+  - job: Deploy
+    steps:
+    - script: |
+        # Install the Power BI command-line interface (CLI)
+        echo "Installing Power BI CLI..."
+        npm install -g powerbi-cli
+
+        # Authenticate with Power BI using python script
+        echo "Authenticating with Power BI using python script..."
+        python powerbi1.py
+
+        # Import the report
+        echo "Importing report..."
+        pbi import -f $(powerbi_file) -n "My Report"
+
+        # Publish the report
+        echo "Publishing report..."
+        pbi publish -n "My Report"
+
+        # Sign out of Power BI
+        echo "Signing out of Power BI..."
+        pbi logout
+      displayName: 'Deploy Report'
+
